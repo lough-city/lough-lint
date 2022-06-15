@@ -34,6 +34,18 @@
 
   > 安装 `VSCode` 插件 `EditorConfig for VS Code`
 
+## Install
+
+```bash
+npm i @lough/lint-cli -g
+```
+
+or
+
+```bash
+yarn add @lough/lint-cli -g
+```
+
 ## Usage
 
 ```bash
