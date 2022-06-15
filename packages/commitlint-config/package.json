@@ -1,0 +1,35 @@
+{
+  "name": "@lough/commitlint-config",
+  "version": "0.0.1",
+  "description": "@lough/commitlint-config",
+  "keywords": [
+    "commitlint",
+    "git"
+  ],
+  "author": "City <city@nanzc.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnCIity/lough-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnCIity/lough-lint/issues"
+  },
+  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "dependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4"
+  }
+}

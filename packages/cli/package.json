@@ -1,0 +1,43 @@
+{
+  "name": "@lough/lint-cli",
+  "version": "0.0.1",
+  "description": "This is a Lint tool docked in lough.",
+  "author": "City <city@nanzc.com>",
+  "license": "MIT",
+  "bin": {
+    "lough-lint": "./bin/index.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnCIity/lough-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnCIity/lough-lint/issues"
+  },
+  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "scripts": {
+    "scan": "rimraf ./src/constants/dependencies.ts && node ./scripts/scan.js",
+    "prepare": "npm run scan",
+    "build": "npm run scan && rimraf ./bin && tsc && node ./scripts/build.js",
+    "test": "npm run build && node bin/index.js"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.2.0",
+    "execa": "^5.1.1",
+    "inquirer": "^8.2.4",
+    "ora": "^5.4.1"
+  }
+}

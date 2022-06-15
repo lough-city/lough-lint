@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "ignoreChanges": [
+    "ignored-file",
+    "**/__tests__/**",
+    "**/*.md"
+  ],
+  "devDependencies": {
+    "@types/node": "^17.0.32",
+    "lerna": "^4.0.0"
+  },
+  "dependencies": {}
+}

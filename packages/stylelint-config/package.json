@@ -1,0 +1,33 @@
+{
+  "name": "@lough/stylelint-config",
+  "version": "0.0.1",
+  "description": "@lough/stylelint-config",
+  "keywords": [
+    "stylelint",
+    "css",
+    "less",
+    "scss",
+    "stylus"
+  ],
+  "author": "City <city@nanzc.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnCIity/lough-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnCIity/lough-lint/issues"
+  },
+  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "dependencies": {
+    "stylelint": "^14.7.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-order": "^5.0.0"
+  }
+}

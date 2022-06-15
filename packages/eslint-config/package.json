@@ -1,0 +1,47 @@
+{
+  "name": "@lough/eslint-config",
+  "version": "0.0.1",
+  "description": "@lough/eslint-config",
+  "keywords": [
+    "eslint",
+    "eslint-typescript",
+    "eslint-node",
+    "eslint-react"
+  ],
+  "files": [
+    "rules",
+    "base.js",
+    "index.js",
+    "typescript.js",
+    "react.js",
+    "package.json",
+    "README.md"
+  ],
+  "author": "City <city@nanzc.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnCIity/lough-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnCIity/lough-lint/issues"
+  },
+  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "dependencies": {
+    "@babel/eslint-parser": "^7.15.4",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "bin",
+    // 编译成哪个版本的 es
+    "target": "ES2017",
+    // 指定生成哪个模块系统代码
+    "module": "CommonJS",
+    // 编译过程中需要引入的库文件的列表
+    "lib": ["ES6"]
+  },
+  "include": ["./src/index.ts"]
+}

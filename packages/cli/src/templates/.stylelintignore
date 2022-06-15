@@ -1,0 +1,8 @@
+/node_modules
+/build
+/dist
+/release
+*.tsx
+*.ts
+*.d.ts
+*.js
