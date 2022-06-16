@@ -7,7 +7,7 @@
 
 module.exports = {
   // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
-  'no-descending-specificity': false,
+  'no-descending-specificity': null,
 
   // 禁止在样式表中使用重复的 @import 规则
   'no-duplicate-at-import-rules': true,
