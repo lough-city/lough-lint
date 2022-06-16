@@ -49,5 +49,6 @@
   // 使用 stylelint 自身的校验即可
   "css.validate": false,
   "less.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "stylelint.validate": ["css", "less", "scss", "sass", "stylus", "vue"]
 }

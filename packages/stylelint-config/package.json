@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/AnCIity/lough-lint#readme",
   "dependencies": {
+    "postcss-styl": "^0.9.0",
     "stylelint": "^14.7.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^25.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
     "stylelint-order": "^5.0.0"
   }
 }

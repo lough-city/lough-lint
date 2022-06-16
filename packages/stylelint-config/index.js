@@ -3,6 +3,15 @@ const orderRules = require('./rules/order')
 
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
-  plugins: ['stylelint-order'],
-  rules: Object.assign({}, coreRules, orderRules)
+  plugins: ['stylelint-order', 'stylelint-declaration-block-no-ignored-properties'],
+  overrides: [
+    {
+      files: ['*.stylus', '*.styl', '**/*.stylus', '**/*.styl'],
+      customSyntax: 'postcss-styl',
+      rules: {
+        'declaration-block-trailing-semicolon': ['never']
+      }
+    }
+  ],
+  rules: Object.assign({ 'plugin/declaration-block-no-ignored-properties': true }, coreRules, orderRules)
 }
