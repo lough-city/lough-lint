@@ -3,7 +3,7 @@ import execa from 'execa'
 import chalk from 'chalk'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { removeNpmDepSync } from '../utils/npm'
+import { addNpmDevDep, removeNpmDepSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
 
 const packageName = '@lough/stylelint-config'
@@ -17,7 +17,7 @@ export const initStylelint = () => {
   removeNpmDepSync([packageName, ...packageDeps])
 
   // 安装依赖
-  execa.commandSync(`npm install ${packageName}@latest --save-dev`, { stdio: 'inherit' })
+  addNpmDevDep(`${packageName}@latest`)
 
   // .stylelintrc.js
   copyFileSync(path.join(__dirname, '../templates/.stylelintrc.js'), `${process.cwd()}/.stylelintrc.js`)

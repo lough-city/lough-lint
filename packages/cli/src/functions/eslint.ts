@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import { ES_LINT_TYPE } from '../constants/eslint'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { removeNpmDepSync } from '../utils/npm'
+import { addNpmDevDep, removeNpmDepSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
 
 const packageName = '@lough/eslint-config'
@@ -31,7 +31,7 @@ export const initEslint = async () => {
   removeNpmDepSync([packageName, ...packageDeps])
 
   // 安装依赖
-  execa.commandSync(`npm install ${packageName}@latest --save-dev`, { stdio: 'inherit' })
+  addNpmDevDep(`${packageName}@latest`)
 
   // .eslintrc.js
   copyFileSync(path.join(__dirname, '../templates/.eslintrc.js'), `${process.cwd()}/.eslintrc.js`, v =>

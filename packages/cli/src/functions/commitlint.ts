@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import execa from 'execa'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
+import { addNpmDevDep, readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
 
 const packageName = '@lough/commitlint-config'
@@ -19,7 +19,7 @@ export const initCommitlint = () => {
   removeNpmDepSync([packageName, ...packageDeps])
 
   // 安装依赖
-  execa.commandSync(`npm install ${packageName}@latest --save-dev`, { stdio: 'inherit' })
+  addNpmDevDep(`${packageName}@latest`)
 
   // .commitlintrc.js
   copyFileSync(path.join(__dirname, '../templates/.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`)
@@ -29,7 +29,7 @@ export const initCommitlint = () => {
   /* init git commit hooks START */
 
   // 安装 git commit hooks
-  execa.commandSync(`npm install husky@7.0.2 lint-staged@11.1.2 --save-dev`, { stdio: 'inherit' })
+  addNpmDevDep(['husky@7.0.2', 'lint-staged@11.1.2'])
 
   const npmConfig = readNpmConfigSync()
 

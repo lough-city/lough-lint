@@ -1,14 +1,16 @@
 import chalk from 'chalk'
 import { prompt } from 'inquirer'
 import { LINT_TYPE } from '../constants'
+import { PACKAGE_MANAGE_TOOL } from '../constants/npm'
 import { initEslint } from '../functions/eslint'
 import { initStylelint } from '../functions/stylelint'
 import { initPrettier } from '../functions/prettier'
 import { initEditor } from '../functions/editor'
 import { initCommitlint } from '../functions/commitlint'
-import { existsNpmConfigSync } from '../utils/npm'
+import { existsNpmConfigSync, getPackageManageTool } from '../utils/npm'
 import { existsGitConfigSync } from '../utils/git'
 import { failSpinner, succeedSpinner } from '../utils/spinner'
+import lough from '../config/lough'
 
 const getLintTypeList = () =>
   prompt<{ targets: Array<LINT_TYPE> }>([
@@ -17,6 +19,17 @@ const getLintTypeList = () =>
       name: 'targets',
       message: `请选择初始化规范 (默认全选，空格键切换选中态，回车确认):`,
       choices: Object.keys(LINT_TYPE).map(type => ({ name: type, checked: true }))
+    }
+  ])
+
+const getPMT = () =>
+  prompt<{ pmt: PACKAGE_MANAGE_TOOL }>([
+    {
+      type: 'list',
+      name: 'pmt',
+      message: `请选择初始化规范 (默认全选，空格键切换选中态，回车确认):`,
+      default: PACKAGE_MANAGE_TOOL.npm,
+      choices: Object.keys(PACKAGE_MANAGE_TOOL)
     }
   ])
 
@@ -32,6 +45,12 @@ const action = async () => {
     failSpinner('请先初始化 GIT，或者在 GIT 项目中初始化 commitlint！')
     return
   }
+
+  let packageManageTool = getPackageManageTool()
+
+  if (!packageManageTool) packageManageTool = (await getPMT()).pmt
+
+  lough.packageManageTool = packageManageTool as PACKAGE_MANAGE_TOOL
 
   if (lintList.targets.includes(LINT_TYPE.eslint)) await initEslint()
 
