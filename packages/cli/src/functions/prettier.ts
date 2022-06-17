@@ -9,7 +9,7 @@ export const initPrettier = () => {
   startSpinner('prettier: 初始化开始 ')
 
   // 安装依赖
-  addNpmDevDep('')
+  addNpmDevDep('prettier@latest')
 
   // .prettierrc.js
   copyFileSync(path.join(__dirname, '../templates/.prettierrc.js'), `${process.cwd()}/.prettierrc.js`)
