@@ -165,7 +165,7 @@ module.exports = {
   /**
    * 属性换行最大数量
    */
-  'react/jsx-max-props-per-line': [2, { maximum: 3 }],
+  'react/jsx-max-props-per-line': 'off',
   /**
    * 验证 JSX 左括号和右括号内和周围的空格
    */

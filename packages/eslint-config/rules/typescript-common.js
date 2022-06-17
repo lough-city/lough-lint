@@ -45,13 +45,7 @@ module.exports = {
    * 类型断言必须使用 as Type，禁止使用 <Type>，禁止对对象字面量进行类型断言（断言成 any 是允许的）
    * @reason <Type> 容易被理解为 jsx
    */
-  '@typescript-eslint/consistent-type-assertions': [
-    'error',
-    {
-      assertionStyle: 'as',
-      objectLiteralTypeAssertions: 'never',
-    },
-  ],
+  '@typescript-eslint/consistent-type-assertions': 'off',
   /**
    * 优先使用 interface 而不是 type
    * @reason interface 可以 implement, extend 和 merge
@@ -83,7 +77,7 @@ module.exports = {
   /**
    * 函数允许不用return
    */
-  "@typescript-eslint/explicit-function-return-type": 0,
+  '@typescript-eslint/explicit-function-return-type': 0,
   /**
    * 变量必须在定义的时候赋值
    */
@@ -128,9 +122,9 @@ module.exports = {
         'protected-method',
         'private-method',
         'instance-method',
-        'method',
-      ],
-    },
+        'method'
+      ]
+    }
   ],
   /**
    * 接口中的方法必须用属性的方式定义
@@ -252,8 +246,8 @@ module.exports = {
     'error',
     {
       allowDeclarations: true,
-      allowDefinitionFiles: true,
-    },
+      allowDefinitionFiles: true
+    }
   ],
   /**
    * 禁止在 optional chaining 之后使用 non-null 断言（感叹号）
@@ -291,8 +285,8 @@ module.exports = {
   '@typescript-eslint/no-this-alias': [
     'error',
     {
-      allowDestructuring: true,
-    },
+      allowDestructuring: true
+    }
   ],
   /**
    * 禁止 throw 字面量，必须 throw 一个 Error 对象
@@ -354,8 +348,8 @@ module.exports = {
     {
       allowShortCircuit: true,
       allowTernary: true,
-      allowTaggedTemplates: true,
-    },
+      allowTaggedTemplates: true
+    }
   ],
   /**
    * 已定义的变量必须使用
@@ -366,7 +360,7 @@ module.exports = {
    * 禁止在定义变量之前就使用它
    * @reason 编译阶段检查就足够了
    */
-  '@typescript-eslint/no-use-before-define': ["error"],
+  '@typescript-eslint/no-use-before-define': ['error'],
   /**
    * 禁止出现没必要的 constructor
    */
@@ -379,11 +373,11 @@ module.exports = {
   /**
    * 允许使用any
    */
-  "@typescript-eslint/no-explicit-any": 0,
+  '@typescript-eslint/no-explicit-any': 0,
   /**
    * 消除阴影变量声明
    */
-  "@typescript-eslint/no-shadow": 0,
+  '@typescript-eslint/no-shadow': 0,
   /**
    * 引用插件
    */
@@ -506,8 +500,8 @@ module.exports = {
     {
       path: 'never',
       types: 'always',
-      lib: 'always',
-    },
+      lib: 'always'
+    }
   ],
   /**
    * interface 和 type 定义时必须声明成员的类型
@@ -521,8 +515,8 @@ module.exports = {
       objectDestructuring: false,
       parameter: false,
       propertyDeclaration: true,
-      variableDeclaration: false,
-    },
+      variableDeclaration: false
+    }
   ],
   /**
    * 方法调用时需要绑定到正确的 this 上
@@ -531,6 +525,5 @@ module.exports = {
   /**
    * 函数重载时，若能通过联合类型将两个函数的类型声明合为一个，则使用联合类型而不是两个函数声明
    */
-  '@typescript-eslint/unified-signatures': 'error',
+  '@typescript-eslint/unified-signatures': 'error'
 }
-

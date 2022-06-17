@@ -1,5 +1,4 @@
 import path from 'path'
-import execa from 'execa'
 import chalk from 'chalk'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'

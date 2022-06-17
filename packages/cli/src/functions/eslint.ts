@@ -1,6 +1,5 @@
 import { prompt } from 'inquirer'
 import path from 'path'
-import execa from 'execa'
 import chalk from 'chalk'
 import { ES_LINT_TYPE } from '../constants/eslint'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
