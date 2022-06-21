@@ -1,6 +1,6 @@
 {
   "name": "@lough/commitlint-config",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "@lough/commitlint-config",
   "keywords": [
     "commitlint",
