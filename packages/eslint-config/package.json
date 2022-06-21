@@ -13,6 +13,7 @@
     "base.js",
     "index.js",
     "typescript.js",
+    "node.js",
     "react.js",
     "package.json",
     "README.md"
