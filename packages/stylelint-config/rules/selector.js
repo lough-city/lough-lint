@@ -97,13 +97,13 @@ module.exports = {
   // 'selector-max-attribute': null,
 
   // 限制选择器中类的数量
-  'selector-max-class': 3,
+  'selector-max-class': null,
 
   // 限制选择器中组合子的数量
   'selector-max-combinators': 5,
 
   // 限制选择器中复合选择器的数量
-  'selector-max-compound-selectors': 3,
+  'selector-max-compound-selectors': null,
 
   // 限制选择器中相邻空行的数量
   'selector-max-empty-lines': 0,

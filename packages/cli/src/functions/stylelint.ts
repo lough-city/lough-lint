@@ -2,7 +2,7 @@ import path from 'path'
 import chalk from 'chalk'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { addNpmDevDep, removeNpmDepSync } from '../utils/npm'
+import { addNpmDevDep, readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
 
 const packageName = '@lough/stylelint-config'
@@ -23,6 +23,15 @@ export const initStylelint = () => {
 
   // .stylelintignore
   copyFileSync(path.join(__dirname, '../templates/.stylelintignore'), `${process.cwd()}/.stylelintignore`)
+
+  const npmConfig = readNpmConfigSync()
+
+  // 添加 lint scripts
+  if (!npmConfig.scripts) npmConfig.scripts = {}
+  npmConfig.scripts['lint:style'] = 'stylelint --config .stylelintrc.js ./**/*.{css,less,scss,styl}'
+  npmConfig.scripts['lint:style-fix'] = 'stylelint --fix --config .stylelintrc.js ./**/*.{css,less,scss,styl}'
+
+  writePackageJSONSync(npmConfig)
 
   succeedSpinner(chalk.green('stylelint: 初始化成功!'))
 }

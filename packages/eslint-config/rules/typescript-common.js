@@ -94,7 +94,7 @@ module.exports = {
    * 2. field > constructor > method
    * 3. public > protected > private
    */
-  '@typescript-eslint/member-ordering': [
+  '@typescript-eslint/member-ordering': 'off' /*  [
     'error',
     {
       default: [
@@ -125,7 +125,7 @@ module.exports = {
         'method'
       ]
     }
-  ],
+  ] */,
   /**
    * 接口中的方法必须用属性的方式定义
    * @reason 配置了 strictFunctionTypes 之后，用属性的方式定义方法可以获得更严格的检查
@@ -172,7 +172,7 @@ module.exports = {
   /**
    * 禁止定义空的接口
    */
-  '@typescript-eslint/no-empty-interface': 'error',
+  '@typescript-eslint/no-empty-interface': 'off',
   /**
    * 禁止使用 any
    */
@@ -360,7 +360,7 @@ module.exports = {
    * 禁止在定义变量之前就使用它
    * @reason 编译阶段检查就足够了
    */
-  '@typescript-eslint/no-use-before-define': ['error'],
+  '@typescript-eslint/no-use-before-define': 'off',
   /**
    * 禁止出现没必要的 constructor
    */
@@ -399,7 +399,7 @@ module.exports = {
    * 使用 for 循环遍历数组时，如果索引仅用于获取成员，则必须使用 for of 循环替代 for 循环
    * @reason for of 循环更加易读
    */
-  '@typescript-eslint/prefer-for-of': 'error',
+  '@typescript-eslint/prefer-for-of': 'off',
   /**
    * 使用函数类型别名替代包含函数调用声明的接口
    */

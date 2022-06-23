@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/AnCIity/lough-lint#readme",
   "dependencies": {
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.4",
     "postcss-styl": "^0.9.0",
     "stylelint": "^14.7.1",
     "stylelint-config-prettier": "^8.0.2",

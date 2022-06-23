@@ -36,3 +36,14 @@ dist
 *.tsx
 *.ts
 ```
+
+- 打开 `package.json` 文件，添加 `scripts`
+
+```js
+{
+  "scripts": {
+    "lint:style": "stylelint --config .stylelintrc.js ./**/*.{css,less,scss,styl}",
+    "lint:style-fix": "stylelint --fix --config .stylelintrc.js ./**/*.{css,less,scss,styl}"
+  }
+}
+```

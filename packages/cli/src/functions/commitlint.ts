@@ -39,7 +39,7 @@ export const initCommitlint = () => {
 
   // 添加 git commit hooks 配置
   npmConfig['lint-staged'] = {
-    '*.{js,jsx,ts,tsx}': ['eslint -c .eslintrc.js --ext .ts,.tsx'],
+    '*.{ts,tsx}': ['eslint -c .eslintrc.js --ext .ts,.tsx'],
     '*.{css,less,scss,styl}': ['stylelint --config .stylelintrc.js *.{css,less,scss,styl}']
   }
 

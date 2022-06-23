@@ -11,6 +11,14 @@ module.exports = {
       rules: {
         'declaration-block-trailing-semicolon': ['never']
       }
+    },
+    {
+      files: ['*.scss', '**/*.scss'],
+      customSyntax: 'postcss-scss'
+    },
+    {
+      files: ['*.less', '**/*.less'],
+      customSyntax: 'postcss-less'
     }
   ],
   rules: Object.assign({ 'plugin/declaration-block-no-ignored-properties': true }, coreRules, orderRules)

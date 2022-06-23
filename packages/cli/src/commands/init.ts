@@ -1,3 +1,4 @@
+import fs from 'fs'
 import chalk from 'chalk'
 import { prompt } from 'inquirer'
 import { LINT_TYPE } from '../constants'
@@ -7,7 +8,7 @@ import { initStylelint } from '../functions/stylelint'
 import { initPrettier } from '../functions/prettier'
 import { initEditor } from '../functions/editor'
 import { initCommitlint } from '../functions/commitlint'
-import { existsNpmConfigSync, getPackageManageTool } from '../utils/npm'
+import { existsNpmConfigSync, getPackageManageTool, readNpmConfigSync, writePackageJSONSync } from '../utils/npm'
 import { existsGitConfigSync } from '../utils/git'
 import { failSpinner, succeedSpinner } from '../utils/spinner'
 import lough from '../config/lough'
@@ -51,10 +52,22 @@ const action = async () => {
   if (!packageManageTool) packageManageTool = (await getPMT()).pmt
 
   lough.packageManageTool = packageManageTool as PACKAGE_MANAGE_TOOL
+  if (fs.existsSync(`${process.cwd()}/lerna.json`)) lough.isMorePackage = true
 
   if (lintList.targets.includes(LINT_TYPE.eslint)) await initEslint()
 
   if (lintList.targets.includes(LINT_TYPE.stylelint)) initStylelint()
+
+  if (lintList.targets.includes(LINT_TYPE.eslint) && lintList.targets.includes(LINT_TYPE.stylelint)) {
+    const npmConfig = readNpmConfigSync()
+
+    // 添加 lint scripts
+    if (!npmConfig.scripts) npmConfig.scripts = {}
+    npmConfig.scripts['lint'] = 'npm run lint:es && npm run lint:style'
+    npmConfig.scripts['lint-fix'] = 'npm run lint:es-fix && npm run lint:style-fix'
+
+    writePackageJSONSync(npmConfig)
+  }
 
   if (lintList.targets.includes(LINT_TYPE.prettier)) initPrettier()
 

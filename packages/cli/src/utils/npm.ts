@@ -15,6 +15,32 @@ export const npmConfigPath = `${process.cwd()}/package.json`
 export const existsNpmConfigSync = () => fs.existsSync(npmConfigPath)
 
 /**
+ * 获取安装 NPM 开发包命令
+ * @param packageName 待安装包
+ */
+const getNpmInstallDevDepCommand = (packageName: string) => {
+  if (lough.packageManageTool === PACKAGE_MANAGE_TOOL.yarn) {
+    if (lough.isMorePackage) return `yarn add ${packageName} -WD`
+    return `yarn add ${packageName} -D`
+  }
+
+  return `npm install ${packageName} -D`
+}
+
+/**
+ * 获取卸载 NPM 开发包命令
+ * @param packageName 待卸载包
+ */
+const getNpmUnInstallDevDepCommand = (packageName: string) => {
+  if (lough.packageManageTool === PACKAGE_MANAGE_TOOL.yarn) {
+    if (lough.isMorePackage) return `yarn remove ${packageName} -WD`
+    return `yarn remove ${packageName} -D`
+  }
+
+  return `npm uninstall ${packageName} -D`
+}
+
+/**
  * 添加 NPM 开发包
  * @param packages 待添加包
  */
@@ -22,10 +48,7 @@ export const addNpmDevDep = (packages: string | Array<string>) => {
   if (!Array.isArray(packages)) packages = [packages]
 
   for (const packageName of packages) {
-    execa.commandSync(
-      `${lough.packageManageTool === PACKAGE_MANAGE_TOOL.yarn ? 'yarn add' : 'npm install'} ${packageName} -D`,
-      { stdio: 'inherit' }
-    )
+    execa.commandSync(getNpmInstallDevDepCommand(packageName), { stdio: 'inherit' })
   }
 }
 
@@ -37,10 +60,7 @@ export const addNpmDep = (packages: string | Array<string>) => {
   if (!Array.isArray(packages)) packages = [packages]
 
   for (const packageName of packages) {
-    execa.commandSync(
-      `${lough.packageManageTool === PACKAGE_MANAGE_TOOL.yarn ? 'yarn add' : 'npm install'} ${packageName}`,
-      { stdio: 'inherit' }
-    )
+    execa.commandSync(getNpmInstallDevDepCommand(packageName), { stdio: 'inherit' })
   }
 }
 
@@ -66,10 +86,7 @@ export const removeNpmDepSync = (packages: string | Array<string>) => {
   for (const packageName of packages) {
     if (!dependencies.includes(packageName)) continue
 
-    execa.commandSync(
-      `${lough.packageManageTool === PACKAGE_MANAGE_TOOL.yarn ? 'yarn remove' : 'npm uninstall'} ${packageName}`,
-      { stdio: 'inherit' }
-    )
+    execa.commandSync(getNpmUnInstallDevDepCommand(packageName), { stdio: 'inherit' })
   }
 }
 

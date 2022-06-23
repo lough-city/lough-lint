@@ -4,7 +4,7 @@ import chalk from 'chalk'
 import { ES_LINT_TYPE } from '../constants/eslint'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { addNpmDevDep, removeNpmDepSync } from '../utils/npm'
+import { addNpmDevDep, readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
 
 const packageName = '@lough/eslint-config'
@@ -39,6 +39,15 @@ export const initEslint = async () => {
 
   // .eslintignore
   copyFileSync(path.join(__dirname, '../templates/.eslintignore'), `${process.cwd()}/.eslintignore`)
+
+  const npmConfig = readNpmConfigSync()
+
+  // 添加 lint scripts
+  if (!npmConfig.scripts) npmConfig.scripts = {}
+  npmConfig.scripts['lint:es'] = 'eslint -c .eslintrc.js --ext .ts,.tsx ./'
+  npmConfig.scripts['lint:es-fix'] = 'eslint --fix -c .eslintrc.js --ext .ts,.tsx ./'
+
+  writePackageJSONSync(npmConfig)
 
   succeedSpinner(chalk.green('eslint: 初始化成功!'))
 }

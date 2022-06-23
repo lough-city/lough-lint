@@ -136,7 +136,7 @@ module.exports = {
   /**
    * for in 内部必须有 hasOwnProperty
    */
-  'guard-for-in': 'error',
+  'guard-for-in': 'off',
   /**
    * 禁止使用指定的标识符
    */
@@ -555,7 +555,7 @@ module.exports = {
   /**
    * 禁止对函数的参数重新赋值
    */
-  'no-param-reassign': 'error',
+  'no-param-reassign': 'off',
   /**
    * 禁止使用 ++ 或 --
    */

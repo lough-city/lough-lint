@@ -35,3 +35,14 @@ node_modules
 build
 dist
 ```
+
+- 打开 `package.json` 文件，添加 `scripts`
+
+```js
+{
+  "scripts": {
+    "lint:es": "eslint -c .eslintrc.js --ext .ts,.tsx ./",
+    "lint:es-fix": "eslint --fix -c .eslintrc.js --ext .ts,.tsx ./"
+  }
+}
+```
