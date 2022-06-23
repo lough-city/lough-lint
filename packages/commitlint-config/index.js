@@ -1,25 +1,19 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    // <type> 不能为空
-    'scope-empty': [2, 'always'],
-    // <type> 不能为空
+    // <type> 为空
     'type-empty': [2, 'never'],
-    // <type>格式小写
+    // <type> 小写
     'type-case': [2, 'always', 'lower-case'],
-    // <scope> 格式 小写
-    'scope-case': [2, 'always', 'lower-case'],
-    // <subject> 不能为空
+    // <subject> 为空
     'subject-empty': [2, 'never'],
-    // <subject> 以.为结束标志
-    'subject-full-stop': [2, 'never', '.'],
-    'subject-case': [2, 'never', []],
-    // body换行
+    // <body> 换行
     'body-leading-blank': [2, 'always'],
     // <footer> 以空行开头
     'footer-leading-blank': [1, 'always'],
     // header 最长72
     'header-max-length': [2, 'never', 72],
+    // <type> 枚举
     'type-enum': [
       2,
       'always',
@@ -46,10 +40,10 @@ module.exports = {
         'style',
         // 测试用例修改
         'test',
-        // Add custom type
-        'page', // Update page use api fech data
-        'ui', // Changes page layout and style
-        'release' // Release version
+        // 改变页面布局与样式
+        'ui',
+        // 发布版本
+        'release'
       ]
     ]
   }
