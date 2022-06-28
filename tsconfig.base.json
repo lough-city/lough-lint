@@ -15,7 +15,7 @@
     "allowJs": false,
 
     // 输出声明文件
-    "declaration": true,
+    "declaration": false,
 
     // 输出目录
     // "outDir": "./lib",
