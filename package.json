@@ -9,6 +9,15 @@
     "**/__tests__/**",
     "**/*.md"
   ],
+  "command": {
+    "publish": {
+      "registry": "https://registry.npmjs.org"
+    },
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore(release): publish"
+    }
+  },
   "devDependencies": {
     "@types/node": "^17.0.32",
     "lerna": "^4.0.0"
