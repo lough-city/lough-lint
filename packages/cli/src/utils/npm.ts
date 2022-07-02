@@ -73,7 +73,7 @@ export const removeNpmDepSync = (packages: string | Array<string>) => {
 
   const npmConfigText = fs.readFileSync(npmConfigPath, 'utf-8')
   const npmConfig = JSON.parse(npmConfigText)
-  let dependencies = []
+  let dependencies: Array<string> = []
 
   if (npmConfig.hasOwnProperty('dependencies')) {
     dependencies = dependencies.concat(Object.keys(npmConfig.dependencies))

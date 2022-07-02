@@ -30,7 +30,7 @@
     "noImplicitAny": false,
 
     // 启用严格的空检查
-    "strictNullChecks": false,
+    "strictNullChecks": true,
 
     /* 模块解析选项 */
 
