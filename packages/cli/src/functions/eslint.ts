@@ -1,9 +1,10 @@
-import { prompt } from 'inquirer'
+import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
+import { prompt } from 'inquirer'
 import { ES_LINT_TYPE } from '../constants/eslint'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
-import { copyFileSync } from '../utils/file'
+import { copyFileSync, removeDirOrFileSync } from '../utils/file'
 import { addNpmDevDep, readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
 
@@ -31,6 +32,10 @@ export const initEslint = async () => {
 
   // 安装依赖
   addNpmDevDep(`${packageName}@latest`)
+
+  // 删除 .eslintrc.json
+  if (fs.existsSync(path.join(__dirname, '../templates/.eslintrc.json')))
+    removeDirOrFileSync(path.join(__dirname, '../templates/.eslintrc.json'))
 
   // .eslintrc.js
   copyFileSync(path.join(__dirname, '../templates/.eslintrc.js'), `${process.cwd()}/.eslintrc.js`, v =>
