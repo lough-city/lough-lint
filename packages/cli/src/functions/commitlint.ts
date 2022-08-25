@@ -1,3 +1,4 @@
+import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
 import execa from 'execa'
@@ -23,6 +24,11 @@ export const initCommitlint = () => {
 
   // .commitlintrc.js
   copyFileSync(path.join(__dirname, '../templates/.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`)
+  // .gitattributes
+  copyFileSync(path.join(__dirname, '../templates/.gitattributes'), `${process.cwd()}/.gitattributes`)
+  // .gitignore
+  if (!fs.existsSync(path.join(__dirname, '../templates/.gitignore')))
+    copyFileSync(path.join(__dirname, '../templates/.gitignore'), `${process.cwd()}/.gitignore`)
 
   /* init commitlint config END */
 
