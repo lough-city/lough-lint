@@ -439,7 +439,7 @@ module.exports = {
    * 禁止在类之外的地方使用 this
    * @reason 只允许在 class 中使用 this
    */
-  'no-invalid-this': 'error',
+  'no-invalid-this': 'off',
   /**
    * 禁止使用特殊空白符（比如全角空格），除非是出现在字符串、正则表达式或模版字符串中
    */
