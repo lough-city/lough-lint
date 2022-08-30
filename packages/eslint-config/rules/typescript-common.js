@@ -208,17 +208,14 @@ module.exports = {
   '@typescript-eslint/no-inferrable-types': 'error',
   /**
    * 禁止在类之外的地方使用 this
-   * @reason 只允许在 class 中使用 this
    */
   '@typescript-eslint/no-invalid-this': 'off',
   /**
    * 禁止使用无意义的 void 类型
-   * @reason void 只能用在函数的返回值中
    */
-  '@typescript-eslint/no-invalid-void-type': 'error',
+  '@typescript-eslint/no-invalid-void-type': 'off',
   /**
    * 禁止在循环内的函数内部出现循环体条件语句中定义的变量
-   * @reason 使用 let 就已经解决了这个问题了
    */
   '@typescript-eslint/no-loop-func': 'off',
   /**
@@ -261,9 +258,8 @@ module.exports = {
   '@typescript-eslint/no-non-null-assertion': 'off',
   /**
    * 禁止给类的构造函数的参数添加修饰符
-   * @reason 强制所有属性都定义到类里面，比较统一
    */
-  '@typescript-eslint/no-parameter-properties': 'error',
+  '@typescript-eslint/no-parameter-properties': 'off',
   /**
    * 禁止重复定义变量
    * @reason 禁用 var 之后，编译阶段就会报错了
