@@ -4,9 +4,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 6
   },
-  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended', 'import'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'import'],
   settings: {
     'import/resolver': {
       node: true,
