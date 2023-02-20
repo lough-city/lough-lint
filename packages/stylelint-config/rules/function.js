@@ -93,20 +93,10 @@ module.exports = {
   ],
 
   // 禁止使用以//开头的url
-  'function-url-no-scheme-relative': [
-    true,
-    {
-      message: '禁止使用以//开头的url'
-    }
-  ],
+  'function-url-no-scheme-relative': null,
 
   // 要求url使用引号
-  'function-url-quotes': [
-    'always',
-    {
-      message: '要求url使用引号'
-    }
-  ],
+  'function-url-quotes': null,
 
   // 指定允许的URL方案列表
   // 'function-url-scheme-allowed-list': null,

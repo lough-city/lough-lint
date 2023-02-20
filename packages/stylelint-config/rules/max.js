@@ -8,9 +8,9 @@
 module.exports = {
   // 限制允许的嵌套深度
   'max-nesting-depth': [
-    5,
+    10,
     {
-      message: '限制允许的嵌套深度：5'
+      message: '限制允许的嵌套深度：10'
     }
   ],
 

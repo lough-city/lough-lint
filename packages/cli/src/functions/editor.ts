@@ -13,6 +13,9 @@ export const initEditor = () => {
   // settings.json
   copyFileSync(path.join(__dirname, '../templates/settings.json'), `${vscodeConfigPath}/settings.json`)
 
+  // extensions.json
+  copyFileSync(path.join(__dirname, '../templates/extensions.json'), `${vscodeConfigPath}/extensions.json`)
+
   // .editorconfig
   copyFileSync(path.join(__dirname, '../templates/.editorconfig'), `${process.cwd()}/.editorconfig`)
 

@@ -1,4 +1,5 @@
 node_modules
+release
 build
 dist
 lib

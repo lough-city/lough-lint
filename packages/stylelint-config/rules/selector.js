@@ -26,12 +26,7 @@ module.exports = {
   ],
 
   // 禁止使用类型对选择器定义属性
-  'selector-no-qualifying-type': [
-    true,
-    {
-      ignore: ['attribute']
-    }
-  ],
+  'selector-no-qualifying-type': null,
 
   // 禁用通配符选择器
   // 'selector-max-universal': 0,
@@ -53,16 +48,16 @@ module.exports = {
   ],
 
   // 在属性选择器中的括号内需要一个空格
-  'selector-attribute-brackets-space-inside': 'always',
+  'selector-attribute-brackets-space-inside': null,
 
   // 指定不允许的属性运算符列表
   'selector-attribute-operator-disallowed-list': ['*='],
 
   // 属性选择器中的操作符后需要一个空格
-  'selector-attribute-operator-space-after': 'always',
+  'selector-attribute-operator-space-after': null,
 
   // 在属性选择器中的运算符之前需要一个空格。
-  'selector-attribute-operator-space-before': 'always',
+  'selector-attribute-operator-space-before': null,
 
   // 指定允许的属性运算符列表，关闭
   // "selector-attribute-operator-allowed-list": null,
@@ -100,7 +95,7 @@ module.exports = {
   'selector-max-class': null,
 
   // 限制选择器中组合子的数量
-  'selector-max-combinators': 5,
+  'selector-max-combinators': 10,
 
   // 限制选择器中复合选择器的数量
   'selector-max-compound-selectors': null,
@@ -109,7 +104,7 @@ module.exports = {
   'selector-max-empty-lines': 0,
 
   // 限制选择器中伪类的数量
-  'selector-max-pseudo-class': 1,
+  'selector-max-pseudo-class': 5,
 
   // 限制选择器的特异性。
   // "selector-max-specificity": "0,2,0",

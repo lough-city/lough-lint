@@ -296,7 +296,7 @@ module.exports = {
   /**
    * 禁止使用 debugger
    */
-  'no-debugger': 2,
+  'no-debugger': 'off',
   /**
    * 禁止对一个变量使用 delete
    * @reason 编译阶段就会报错了
@@ -366,7 +366,7 @@ module.exports = {
   /**
    * 禁止使用 eval
    */
-  'no-eval': 'error',
+  'no-eval': 'off',
   /**
    * 禁止将 catch 的第一个参数 error 重新赋值
    */
@@ -882,7 +882,7 @@ module.exports = {
   /**
    * parseInt 必须传入第二个参数
    */
-  radix: 'error',
+  radix: 'off',
   /**
    * 禁止将 await 或 yield 的结果做为运算符的后面项
    * @reason 这样会导致不符合预期的结果

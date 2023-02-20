@@ -1,6 +1,5 @@
 node_modules
-es
-lib
+build
 dist
-release
-releases
+lib
+es
