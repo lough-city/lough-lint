@@ -20,7 +20,7 @@ module.exports = {
         // [内置模块, 外部模块, 内部引用, 父节点依赖, 兄弟依赖, index 文件依赖, 声明依赖（typescript）, 类型依赖（typescript）, 未知依赖]
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type', 'unknown'],
         // 每个分组之间换行
-        'newlines-between': 'always',
+        'newlines-between': 'never',
         // 排序
         alphabetize: {
           // 排序规则，asc升序，desc降序

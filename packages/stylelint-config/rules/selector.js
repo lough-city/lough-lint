@@ -31,7 +31,7 @@ module.exports = {
   // 禁用通配符选择器
   // 'selector-max-universal': 0,
 
-  'selector-list-comma-space-after': 'always-single-line',
+  'selector-list-comma-space-after': 'never-single-line',
 
   // 要求在选择器列表的逗号之前有一个空格，或禁止有空白
   'selector-list-comma-space-before': 'never',

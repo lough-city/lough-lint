@@ -349,9 +349,16 @@ module.exports = {
   ],
   /**
    * 已定义的变量必须使用
-   * @reason 编译阶段检查就足够了
    */
-  '@typescript-eslint/no-unused-vars': 'off',
+  '@typescript-eslint/no-unused-vars': [
+    'error',
+    {
+      // 声明
+      varsIgnorePattern: '^_',
+      // 参数
+      argsIgnorePattern: '^_'
+    }
+  ],
   /**
    * 禁止在定义变量之前就使用它
    * @reason 编译阶段检查就足够了
@@ -374,10 +381,6 @@ module.exports = {
    * 消除阴影变量声明
    */
   '@typescript-eslint/no-shadow': 0,
-  /**
-   * 引用插件
-   */
-  '@typescript-eslint/no-unused-vars': ['off'],
   /**
    * 必须使用 ! 而不是 as
    */

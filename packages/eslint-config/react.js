@@ -36,7 +36,7 @@ module.exports = {
         // pathGroups 配置的导入的类型不做处理的定义在这里
         pathGroupsExcludedImportTypes: ['builtin'],
         // 每个分组之间换行
-        'newlines-between': 'always',
+        'newlines-between': 'never',
         // 排序
         alphabetize: {
           // 排序规则，asc升序，desc降序

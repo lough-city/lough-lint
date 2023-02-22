@@ -726,15 +726,7 @@ module.exports = {
   /**
    * 已定义的变量必须使用
    */
-  'no-unused-vars': [
-    'error',
-    {
-      vars: 'all',
-      args: 'none',
-      ignoreRestSiblings: false,
-      caughtErrors: 'none'
-    }
-  ],
+  'no-unused-vars': 'off',
   /**
    * 变量必须先定义后使用
    */
