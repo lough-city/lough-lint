@@ -3,23 +3,28 @@
  */
 const ENGINEERING = {
   /**
-   * 构建过程或辅助工具的变动
+   * 事务
+   * @description 变动事务，改动其他不影响代码的事务
    */
   chore: 'chore',
   /**
-   * 与 CI（持续集成服务）有关的改动
+   * 脚本
+   * @description 更新脚本，改动CI或执行脚本配置
    */
   ci: 'ci',
   /**
-   * 代码风格修改
+   * 样式
+   * @description 变动格式，不影响代码逻辑
    */
   style: 'style',
   /**
    * 文档
+   * @description 更新文档，仅修改文档不修改代码
    */
   docs: 'docs',
   /**
    * 测试
+   * @description 新增测试，追加测试用例验证代码
    */
   test: 'test'
 }
@@ -29,19 +34,18 @@ const ENGINEERING = {
  */
 const FEATURE = {
   /**
-   * 新功能、新特性
+   * 功能
+   * @description 新增功能，迭代项目需求
    */
   feat: 'feat',
   /**
-   * 页面布局与样式
-   */
-  ui: 'ui',
-  /**
    * 重构
+   * @description 重构代码，非新增功能也非修复缺陷
    */
   refactor: 'refactor',
   /**
-   * 优化相关，比如：提升性能、体验
+   * 性能
+   * @description 优化性能，提高代码执行性能
    */
   perf: 'perf'
 }
@@ -51,11 +55,13 @@ const FEATURE = {
  */
 const RELEASE = {
   /**
-   * 编译相关的修改，例如版本发布、对项目构建或者依赖的改动
+   * 构建
+   * @description 更新构建，改动构建工具或外部依赖
    */
   build: 'build',
   /**
    * 发布
+   * @description 发布版本，版本的发布及其标记
    */
   release: 'release'
 }
@@ -65,7 +71,8 @@ const RELEASE = {
  */
 const BUG_FIX = {
   /**
-   * 修补BUG
+   * 修复
+   * @description 修复缺陷，修复上一版本存在问题
    */
   fix: 'fix'
 }
