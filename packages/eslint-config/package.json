@@ -27,19 +27,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnCIity/lough-lint.git"
+    "url": "git+https://github.com/lough-city/lough-lint.git"
   },
   "bugs": {
-    "url": "https://github.com/AnCIity/lough-lint/issues"
+    "url": "https://github.com/lough-city/lough-lint/issues"
   },
-  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "homepage": "https://github.com/lough-city/lough-lint#readme",
   "dependencies": {
     "@babel/eslint-parser": "^7.15.4",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^5.29.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-config-react-app": "^6.0.0",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-import": "^2.12.0",

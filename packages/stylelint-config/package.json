@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnCIity/lough-lint.git"
+    "url": "git+https://github.com/lough-city/lough-lint.git"
   },
   "bugs": {
-    "url": "https://github.com/AnCIity/lough-lint/issues"
+    "url": "https://github.com/lough-city/lough-lint/issues"
   },
-  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "homepage": "https://github.com/lough-city/lough-lint#readme",
   "dependencies": {
     "postcss-less": "^6.0.0",
     "postcss-scss": "^4.0.4",

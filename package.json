@@ -10,8 +10,7 @@
     "**/*.md"
   ],
   "devDependencies": {
-    "@types/node": "^17.0.32",
-    "lerna": "^4.0.0"
+    "@types/node": "^17.0.32"
   },
   "dependencies": {}
 }

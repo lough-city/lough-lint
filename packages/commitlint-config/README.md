@@ -16,7 +16,7 @@ yarn add @lough/commitlint-config -D
 
 ## Usage
 
-> 以下为手动安装步骤，自动安装可使用 [Cli](https://github.com/AnCIity/lough-lint/tree/main/packages/cli)
+> 以下为手动安装步骤，自动安装可使用 [Cli](https://github.com/lough-city/lough-lint/tree/main/packages/cli)
 
 - 新建 `.commitlintrc.js` 文件，用于配置 `commitlint` 检测
 

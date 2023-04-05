@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnCIity/lough-lint.git"
+    "url": "git+https://github.com/lough-city/lough-lint.git"
   },
   "bugs": {
-    "url": "https://github.com/AnCIity/lough-lint/issues"
+    "url": "https://github.com/lough-city/lough-lint/issues"
   },
-  "homepage": "https://github.com/AnCIity/lough-lint#readme",
+  "homepage": "https://github.com/lough-city/lough-lint#readme",
   "scripts": {
     "scan": "rimraf ./src/constants/dependencies.ts && node ./scripts/scan.js",
     "prepare": "npm run scan",
@@ -41,6 +41,7 @@
     "ora": "^5.4.1"
   },
   "engines": {
-    "node": ">=14.17.0"
+    "node": ">=14.17.0",
+    "npm": ">=7.0.0"
   }
 }
