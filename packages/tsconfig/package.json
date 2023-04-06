@@ -1,0 +1,36 @@
+{
+  "name": "@lough/tsconfig",
+  "version": "0.0.2",
+  "description": "This is extends tsconfig in lough.",
+  "keywords": [
+    "typescript",
+    "component",
+    "node",
+    "cli",
+    "tsconfig"
+  ],
+  "author": {
+    "name": "Lough",
+    "email": "lough@nanzc.com",
+    "home": "lough.city"
+  },
+  "homepage": "https://github.com/lough-city/lough-lint",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lough-city/lough-lint"
+  },
+  "bugs": {
+    "url": "https://github.com/lough-city/lough-lint/issues"
+  },
+  "files": [
+    "typescript.json",
+    "component.json",
+    "node.json",
+    "cli.json"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT"
+}
