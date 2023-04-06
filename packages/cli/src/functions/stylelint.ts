@@ -1,37 +1,41 @@
-import path from 'path'
+import { dirname, join } from 'path'
 import chalk from 'chalk'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { addNpmDevDep, readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
+import { fileURLToPath } from 'url'
+import { Package } from '@lough/npm-operate'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const packageName = '@lough/stylelint-config'
 
 const packageDeps = dependenciesMap[packageName]
 
-export const initStylelint = () => {
+export const initStylelint = (npm: Package) => {
   startSpinner('stylelint: 初始化开始 ')
 
   // 检测并移除当前项目相关依赖
-  removeNpmDepSync([packageName, ...packageDeps])
+  npm.uninstall([packageName, ...packageDeps])
 
   // 安装依赖
-  addNpmDevDep(`${packageName}@latest`)
+  npm.installDev(`${packageName}@latest`)
 
   // .stylelintrc.js
-  copyFileSync(path.join(__dirname, '../templates/.stylelintrc.js'), `${process.cwd()}/.stylelintrc.js`)
+  copyFileSync(join(__dirname, '../templates/.stylelintrc.js'), `${process.cwd()}/.stylelintrc.js`)
 
   // .stylelintignore
-  copyFileSync(path.join(__dirname, '../templates/.stylelintignore'), `${process.cwd()}/.stylelintignore`)
+  copyFileSync(join(__dirname, '../templates/.stylelintignore'), `${process.cwd()}/.stylelintignore`)
 
-  const npmConfig = readNpmConfigSync()
+  const config = npm.readConfig()
 
   // 添加 lint scripts
-  if (!npmConfig.scripts) npmConfig.scripts = {}
-  npmConfig.scripts['lint:style'] = 'stylelint --config .stylelintrc.js ./**/*.{css,less,scss,styl}'
-  npmConfig.scripts['lint:style-fix'] = 'stylelint --fix --config .stylelintrc.js ./**/*.{css,less,scss,styl}'
+  if (!config.scripts) config.scripts = {}
+  config.scripts['lint:style'] = 'stylelint --config .stylelintrc.js ./**/*.{css,less,scss,styl}'
+  config.scripts['lint:style-fix'] = 'stylelint --fix --config .stylelintrc.js ./**/*.{css,less,scss,styl}'
 
-  writePackageJSONSync(npmConfig)
+  npm.writeConfig(config)
 
   succeedSpinner(chalk.green('stylelint: 初始化成功!'))
 }

@@ -19,15 +19,15 @@ export const removeDirOrFileSync = (removePath: string) => {
  * @param transform 可选 - 处理转换内容函数
  */
 export const copyFileSync = (fromPath: string, toPath: string, transform?: (v: string) => string) => {
-  if (!fs.existsSync(fromPath)) return false
+  if (!fs.existsSync(fromPath)) return false;
 
-  removeDirOrFileSync(toPath)
+  let writeContent = fs.readFileSync(fromPath, { encoding: 'utf8' });
 
-  let writeContent = fs.readFileSync(fromPath, { encoding: 'utf8' })
+  if (transform) writeContent = transform(writeContent);
 
-  if (transform) writeContent = transform(writeContent)
+  if (fs.existsSync(toPath)) removeDirOrFileSync(toPath);
 
-  fs.writeFileSync(toPath, writeContent, 'utf8')
+  fs.writeFileSync(toPath, writeContent, 'utf8');
 
-  return true
-}
+  return true;
+};

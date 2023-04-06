@@ -6,20 +6,12 @@
     "commitlint",
     "git"
   ],
-  "author": "City <city@nanzc.com>",
-  "license": "MIT",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+  "author": {
+    "name": "Lough",
+    "email": "lough@nanzc.com",
+    "home": "lough.city"
   },
-  "files": [
-    "lib"
-  ],
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
-  },
+  "homepage": "https://github.com/lough-city/lough-lint#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lough-city/lough-lint.git"
@@ -27,9 +19,21 @@
   "bugs": {
     "url": "https://github.com/lough-city/lough-lint/issues"
   },
-  "homepage": "https://github.com/lough-city/lough-lint#readme",
+  "files": [
+    "lib"
+  ],
+  "main": "index.js",
   "dependencies": {
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
   }
 }

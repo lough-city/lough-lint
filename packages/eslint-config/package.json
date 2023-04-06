@@ -8,6 +8,19 @@
     "eslint-node",
     "eslint-react"
   ],
+  "author": {
+    "name": "Lough",
+    "email": "lough@nanzc.com",
+    "home": "lough.city"
+  },
+  "homepage": "https://github.com/lough-city/lough-lint#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lough-city/lough-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lough-city/lough-lint/issues"
+  },
   "files": [
     "rules",
     "base.js",
@@ -18,21 +31,7 @@
     "package.json",
     "README.md"
   ],
-  "author": "City <city@nanzc.com>",
-  "license": "MIT",
   "main": "index.js",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lough-city/lough-lint.git"
-  },
-  "bugs": {
-    "url": "https://github.com/lough-city/lough-lint/issues"
-  },
-  "homepage": "https://github.com/lough-city/lough-lint#readme",
   "dependencies": {
     "@babel/eslint-parser": "^7.15.4",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
@@ -45,5 +44,10 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.2.0"
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT"
 }

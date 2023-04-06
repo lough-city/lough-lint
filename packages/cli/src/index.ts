@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 import { program } from 'commander'
-import { join } from 'path'
-import { readFileSync } from 'fs'
+import { dirname, join } from 'path'
 import init from './commands/init'
+import { fileURLToPath } from 'url';
+import { Package } from '@lough/npm-operate';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function start() {
-  const jsonPath = join(__dirname, '../package.json')
-  const jsonContent = readFileSync(jsonPath, 'utf-8')
-  const jsonResult = JSON.parse(jsonContent)
-  program.version(jsonResult.version)
+  const npm = new Package({ dirName: join(__dirname, '..') });
+  program.version(npm.version);
 
   program.command(init.command).description(init.description).action(init.action)
 

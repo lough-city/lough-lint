@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "NodeNext",
+    "module": "ESNext",
     "lib": ["ESNext"],
     "allowJs": false,
     "declaration": true,
@@ -11,7 +11,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
 
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
 

@@ -1,64 +1,68 @@
 import fs from 'fs'
-import path from 'path'
+import { dirname, join } from 'path'
 import chalk from 'chalk'
 import execa from 'execa'
 import { startSpinner, succeedSpinner } from '../utils/spinner'
 import { copyFileSync } from '../utils/file'
-import { addNpmDevDep, readNpmConfigSync, removeNpmDepSync, writePackageJSONSync } from '../utils/npm'
 import { dependenciesMap } from '../constants/dependencies'
+import { fileURLToPath } from 'url'
+import { IPackage, Package } from '@lough/npm-operate'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const packageName = '@lough/commitlint-config'
 
 const packageDeps = dependenciesMap[packageName]
 
-export const initCommitlint = () => {
+export const initCommitlint = (npm: Package) => {
   startSpinner('commitlint: 初始化开始 ')
 
   /* init commitlint config START */
 
   // 检测并移除当前项目相关依赖
-  removeNpmDepSync([packageName, ...packageDeps])
+  npm.uninstall([packageName, ...packageDeps])
 
   // 安装依赖
-  addNpmDevDep(`${packageName}@latest`)
+  npm.installDev(`${packageName}@latest`)
 
   // .commitlintrc.js
-  copyFileSync(path.join(__dirname, '../templates/.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`)
+  copyFileSync(join(__dirname, '../templates/.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`)
   // .gitattributes
-  copyFileSync(path.join(__dirname, '../templates/.gitattributes'), `${process.cwd()}/.gitattributes`)
+  copyFileSync(join(__dirname, '../templates/.gitattributes'), `${process.cwd()}/.gitattributes`)
   // .gitignore
-  if (!fs.existsSync(path.join(__dirname, '../templates/.gitignore')))
-    copyFileSync(path.join(__dirname, '../templates/.gitignore'), `${process.cwd()}/.gitignore`)
+  if (!fs.existsSync(join(__dirname, '../templates/.gitignore')))
+    copyFileSync(join(__dirname, '../templates/.gitignore'), `${process.cwd()}/.gitignore`)
 
   /* init commitlint config END */
 
   /* init git commit hooks START */
 
   // 安装 git commit hooks
-  addNpmDevDep(['husky@7.0.2', 'lint-staged@11.1.2'])
+  npm.installDev(['husky@7.0.2', 'lint-staged@11.1.2'])
 
-  const npmConfig = readNpmConfigSync()
+  const config = npm.readConfig()
 
   // 添加 npm install 时，husky 初始化机制
-  if (!npmConfig.scripts) npmConfig.scripts = {}
-  npmConfig.scripts.prepare = 'husky install'
+  if (!config.scripts) config.scripts = {}
+  config.scripts.prepare = 'husky install'
 
   // 添加 git commit hooks 配置
-  npmConfig['lint-staged'] = {
+  config['lint-staged' as keyof IPackage] = {
     '*.{ts,tsx}': ['eslint -c .eslintrc.js --ext .ts,.tsx'],
     '*.{css,less,scss,styl}': ['stylelint --config .stylelintrc.js *.{css,less,scss,styl}']
   }
 
-  writePackageJSONSync(npmConfig)
+  npm.writeConfig(config)
 
   // 初始化
   execa.commandSync(`npx husky install`)
 
   // 添加 pre commit hooks
-  copyFileSync(path.join(__dirname, '../templates/pre-commit'), `${process.cwd()}/.husky/pre-commit`)
+  copyFileSync(join(__dirname, '../templates/pre-commit'), `${process.cwd()}/.husky/pre-commit`)
 
   // 添加 commit msg hooks
-  copyFileSync(path.join(__dirname, '../templates/commit-msg'), `${process.cwd()}/.husky/commit-msg`)
+  copyFileSync(join(__dirname, '../templates/commit-msg'), `${process.cwd()}/.husky/commit-msg`)
 
   /* init git commit hooks END */
 

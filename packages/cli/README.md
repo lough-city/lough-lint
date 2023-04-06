@@ -54,4 +54,3 @@ lough-lint init
 
 ## Plan
 
-- [ ] 新增 `upgrade` 命令，支持对已安装 `lough-lint` 套件项目进行升级。

@@ -1,16 +1,16 @@
 {
   "name": "root",
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^17.0.32"
+  },
+  "private": true,
   "ignoreChanges": [
     "ignored-file",
     "**/__tests__/**",
     "**/*.md"
-  ],
-  "devDependencies": {
-    "@types/node": "^17.0.32"
-  },
-  "dependencies": {}
+  ]
 }

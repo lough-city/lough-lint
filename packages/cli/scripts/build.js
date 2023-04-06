@@ -1,12 +1,16 @@
-const fs = require('fs')
-const path = require('path')
+import { readdirSync, mkdirSync, copyFileSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 
-const files = fs.readdirSync(path.join(__dirname, '../src/templates'))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-fs.mkdirSync(path.join(__dirname, '../bin/templates'))
+const files = readdirSync(join(__dirname, '../src/templates'))
+
+mkdirSync(join(__dirname, '../es/templates'))
 
 for (f of files) {
-  fs.copyFileSync(path.join(__dirname, '../src/templates/') + f, path.join(__dirname, '../bin/templates/') + f)
+  copyFileSync(join(__dirname, '../src/templates/') + f, join(__dirname, '../es/templates/') + f)
 }
 
 console.log('打包成功！')

@@ -9,13 +9,12 @@
     "scss",
     "stylus"
   ],
-  "author": "City <city@nanzc.com>",
-  "license": "MIT",
-  "main": "index.js",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
+  "author": {
+    "name": "Lough",
+    "email": "lough@nanzc.com",
+    "home": "lough.city"
   },
+  "homepage": "https://github.com/lough-city/lough-lint#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lough-city/lough-lint.git"
@@ -23,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/lough-city/lough-lint/issues"
   },
-  "homepage": "https://github.com/lough-city/lough-lint#readme",
+  "main": "index.js",
   "dependencies": {
     "postcss-less": "^6.0.0",
     "postcss-scss": "^4.0.4",
@@ -33,5 +32,10 @@
     "stylelint-config-standard": "^25.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
     "stylelint-order": "^5.0.0"
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT"
 }

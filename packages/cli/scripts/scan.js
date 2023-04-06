@@ -1,18 +1,22 @@
-const fs = require('fs')
-const path = require('path')
+import { readdirSync, existsSync, readFileSync, writeFileSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 
-const packagesPath = path.join(__dirname, '../../')
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-const files = fs.readdirSync(packagesPath)
+const packagesPath = join(__dirname, '../../')
+
+const files = readdirSync(packagesPath)
 
 const packageNameList = files.filter(name => name !== 'cli')
 
 const dependenciesMap = {}
 
 for (const name of packageNameList) {
-  const packageNpmConfigPath = path.join(packagesPath, name, 'package.json')
-  if (!fs.existsSync(packageNpmConfigPath)) continue
-  const npmConfigText = fs.readFileSync(packageNpmConfigPath, 'utf-8')
+  const packageNpmConfigPath = join(packagesPath, name, 'package.json')
+  if (!existsSync(packageNpmConfigPath)) continue
+  const npmConfigText = readFileSync(packageNpmConfigPath, 'utf-8')
   const npmConfig = JSON.parse(npmConfigText)
   if (!npmConfig.dependencies) npmConfig.dependencies = {}
 
@@ -20,8 +24,8 @@ for (const name of packageNameList) {
   dependenciesMap[npmConfig.name] = depList
 }
 
-fs.writeFileSync(
-  path.join(__dirname, '../src/constants/dependencies.ts'),
+writeFileSync(
+  join(__dirname, '../src/constants/dependencies.ts'),
   `export const dependenciesMap:Record<${Object.keys(dependenciesMap)
     .map(name => `'${name}'`)
     .join(' | ')}, Array<string>> = ${JSON.stringify(dependenciesMap)}`,
