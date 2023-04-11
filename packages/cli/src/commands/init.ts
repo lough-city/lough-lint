@@ -1,62 +1,67 @@
-import chalk from 'chalk'
-import inquirer from 'inquirer'
-import { LINT_TYPE } from '../constants'
-import { initEslint } from '../functions/eslint'
-import { initStylelint } from '../functions/stylelint'
-import { initPrettier } from '../functions/prettier'
-import { initEditor } from '../functions/editor'
-import { initCommitlint } from '../functions/commitlint'
-import { existsGitConfigSync } from '../utils/git'
-import { failSpinner, succeedSpinner } from '../utils/spinner'
 import { Package } from '@lough/npm-operate';
+import chalk from 'chalk';
+import inquirer from 'inquirer';
+import { PROJECT_TYPE, InitFlow, NORM_TYPE } from '../functions/init';
+import { existsGitConfigSync } from '../utils/git';
+import { failSpinner, succeedSpinner } from '../utils/spinner';
 
-const getLintTypeList = () =>
-  inquirer.prompt<{ targets: Array<LINT_TYPE> }>([
+const getProjectType = () =>
+  inquirer
+    .prompt<{ type: PROJECT_TYPE }>([
+      {
+        type: 'list',
+        name: 'type',
+        message: `Please select the project type:`,
+        choices: Object.keys(PROJECT_TYPE)
+      }
+    ])
+    .then(res => res.type);
+
+const getNormList = () =>
+  inquirer.prompt<{ targets: Array<NORM_TYPE> }>([
     {
       type: 'checkbox',
       name: 'targets',
-      message: `请选择初始化规范 (默认全选，空格键切换选中态，回车确认):`,
-      choices: Object.keys(LINT_TYPE).map(type => ({ name: type, checked: true }))
+      message: `Select the norm you want to init:`,
+      choices: Object.keys(NORM_TYPE).map(type => ({
+        name: type,
+        checked: true
+      }))
     }
-  ])
+  ]);
 
+interface IOptions {
+  type?: PROJECT_TYPE;
+  norms?: Array<NORM_TYPE>;
+  notInteraction: boolean;
+}
 
-const action = async () => {
+const action = async (options: IOptions) => {
+  const { notInteraction, norms, type } = options;
+
   const npm = new Package();
 
-  const lintList = await getLintTypeList()
+  const normList = norms || notInteraction ? Object.values(NORM_TYPE) : (await getNormList()).targets;
 
-  if (lintList.targets.includes(LINT_TYPE.commitlint) && !existsGitConfigSync()) {
-    failSpinner('请先初始化 GIT，或者在 GIT 项目中初始化 commitlint！')
-    return
+  if (normList.includes(NORM_TYPE.commitlint) && !existsGitConfigSync()) {
+    failSpinner('init GIT or init in a GIT project!');
+    return;
   }
 
-  if (lintList.targets.includes(LINT_TYPE.eslint)) await initEslint(npm)
-
-  if (lintList.targets.includes(LINT_TYPE.stylelint)) initStylelint(npm)
-
-  if (lintList.targets.includes(LINT_TYPE.eslint) && lintList.targets.includes(LINT_TYPE.stylelint)) {
-    const config = npm.readConfig()
-
-    // 添加 lint scripts
-    if (!config.scripts) config.scripts = {}
-    config.scripts['lint'] = 'npm run lint:es && npm run lint:style'
-    config.scripts['lint-fix'] = 'npm run lint:es-fix && npm run lint:style-fix'
-
-    npm.writeConfig(config)
+  let projectType = PROJECT_TYPE.typescript;
+  if (normList.includes(NORM_TYPE.eslint) || normList.includes(NORM_TYPE.tsconfig)) {
+    projectType = type || notInteraction ? PROJECT_TYPE.typescript : await getProjectType();
   }
 
-  if (lintList.targets.includes(LINT_TYPE.prettier)) initPrettier(npm)
+  const initFlow = new InitFlow({ npm });
 
-  if (lintList.targets.includes(LINT_TYPE.editor)) initEditor()
+  initFlow.pipeline({ normList, projectType });
 
-  if (lintList.targets.includes(LINT_TYPE.commitlint)) initCommitlint(npm)
-
-  succeedSpinner(chalk.green('初始化成功！'))
-}
+  succeedSpinner(`${chalk.blue('Lough Lint:')} ${chalk.green('succeed')}`);
+};
 
 export default {
   command: 'init',
-  description: '初始化 lint 规范',
+  description: 'init project lint function.',
   action
-}
+};

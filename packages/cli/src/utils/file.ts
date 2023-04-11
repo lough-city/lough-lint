@@ -1,16 +1,16 @@
-import fs from 'fs'
+import fs from 'fs';
 
 /**
  * 删除目录或文件
  * @param removePath 删除路径
  */
 export const removeDirOrFileSync = (removePath: string) => {
-  if (!fs.existsSync(removePath)) return false
+  if (!fs.existsSync(removePath)) return false;
 
-  fs.rmSync(removePath)
+  fs.rmSync(removePath);
 
-  return true
-}
+  return true;
+};
 
 /**
  * 复制文件

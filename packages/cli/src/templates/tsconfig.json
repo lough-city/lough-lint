@@ -1,0 +1,4 @@
+{
+  "extends": "@lough/tsconfig/{{type}}",
+  "include": ["src"]
+}

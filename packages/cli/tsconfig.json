@@ -1,4 +1,4 @@
 {
   "extends": "@lough/tsconfig/node",
-  "include": ["./src/index.ts"]
+  "include": ["src"]
 }
