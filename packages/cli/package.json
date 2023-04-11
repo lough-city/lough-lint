@@ -29,7 +29,7 @@
   "scripts": {
     "prepare": "npm run scan",
     "scan": "rimraf ./src/constants/dependencies.ts && node ./scripts/scan.js",
-    "build": "lough-build",
+    "build": "npm run scan && rimraf ./es && lough-build && node ./scripts/build.js",
     "dev": "lough-build dev"
   },
   "dependencies": {

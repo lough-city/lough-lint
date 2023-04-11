@@ -1,16 +1,16 @@
-import { readdirSync, mkdirSync, copyFileSync } from 'fs'
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import { readdirSync, mkdirSync, copyFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const files = readdirSync(join(__dirname, '../src/templates'))
+const files = readdirSync(join(__dirname, '../src/templates'));
 
-mkdirSync(join(__dirname, '../es/templates'))
+mkdirSync(join(__dirname, '../es/templates'));
 
-for (f of files) {
-  copyFileSync(join(__dirname, '../src/templates/') + f, join(__dirname, '../es/templates/') + f)
+for (const f of files) {
+  copyFileSync(join(__dirname, '../src/templates/') + f, join(__dirname, '../es/templates/') + f);
 }
 
-console.log('打包成功！')
+console.log('打包成功！');
