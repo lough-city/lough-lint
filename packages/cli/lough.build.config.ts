@@ -1,8 +1,7 @@
 import { defineConfig } from '@lough/build-cli';
 
 export default defineConfig({
-  external: ['chalk' ,'commander' ,'execa' ,'inquirer' ,'ora'],
-  globals: {},
+  external: ['@lough/npm-operate', 'chalk', 'commander', 'execa', 'inquirer', 'ora'],
   style: false,
   input: 'src/index.ts'
 });
