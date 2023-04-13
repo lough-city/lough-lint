@@ -41,7 +41,7 @@ const action = async (options: IOptions) => {
 
   const npm = new Package();
 
-  const normList = norms || notInteraction ? Object.values(NORM_TYPE) : (await getNormList()).targets;
+  const normList = norms || (notInteraction ? Object.values(NORM_TYPE) : (await getNormList()).targets);
 
   if (normList.includes(NORM_TYPE.commitlint) && !existsGitConfigSync()) {
     failSpinner('init GIT or init in a GIT project!');
@@ -50,7 +50,7 @@ const action = async (options: IOptions) => {
 
   let projectType = PROJECT_TYPE.typescript;
   if (normList.includes(NORM_TYPE.eslint) || normList.includes(NORM_TYPE.tsconfig)) {
-    projectType = type || notInteraction ? PROJECT_TYPE.typescript : await getProjectType();
+    projectType = type || (notInteraction ? PROJECT_TYPE.typescript : await getProjectType());
   }
 
   const initFlow = new InitFlow({ npm });
