@@ -10,7 +10,10 @@ const files = readdirSync(join(__dirname, '../src/templates'));
 mkdirSync(join(__dirname, '../es/templates'));
 
 for (const f of files) {
-  copyFileSync(join(__dirname, '../src/templates/') + f, join(__dirname, '../es/templates/') + f);
+  copyFileSync(
+    join(__dirname, '../src/templates/') + f,
+    join(__dirname, '../es/templates/') + (f === '.gitignore' ? '.gitignore.temp' : f)
+  );
 }
 
 console.log('打包成功！');

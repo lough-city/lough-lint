@@ -166,7 +166,7 @@ export class InitFlow {
     copyFileSync(join(__dirname, '../templates/.gitattributes'), `${process.cwd()}/.gitattributes`);
     // .gitignore
     if (!existsSync(`${process.cwd()}/.gitignore`))
-      copyFileSync(join(__dirname, '../templates/.gitignore'), `${process.cwd()}/.gitignore`);
+      copyFileSync(join(__dirname, '../templates/.gitignore.temp'), `${process.cwd()}/.gitignore`);
 
     /* init commitlint config END */
 
