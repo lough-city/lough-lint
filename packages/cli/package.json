@@ -1,6 +1,6 @@
 {
   "name": "@lough/lint-cli",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "This is a Lint tool docked in lough.",
   "author": {
     "name": "Lough",
