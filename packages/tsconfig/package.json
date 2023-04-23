@@ -24,7 +24,7 @@
   },
   "files": [
     "typescript.json",
-    "component.json",
+    "react.json",
     "node.json",
     "cli.json"
   ],
