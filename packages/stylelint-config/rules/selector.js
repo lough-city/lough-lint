@@ -3,7 +3,7 @@
  * @rulesDesc 指定允许和禁止的选择器模式，空前、后对空格和换行有一定要求
  */
 
-'use strict'
+'use strict';
 
 module.exports = {
   // 要求或禁止特性值使用引号
@@ -149,11 +149,5 @@ module.exports = {
   'selector-type-no-unknown': [true],
 
   // 在选择器列表的逗号之前需要换行符或不允许有空格
-  'selector-list-comma-newline-before': 'never-multi-line',
-
-  // 在选择器列表的逗号之后需要一个空格或不允许有空格
-  'selector-list-comma-space-after': 'always',
-
-  // 在选择器列表的逗号之前不允许有空格。
-  'selector-list-comma-space-before': 'never'
-}
+  'selector-list-comma-newline-before': 'never-multi-line'
+};
