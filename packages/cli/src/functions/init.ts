@@ -224,7 +224,7 @@ export class InitFlow {
   prettier() {
     this.spinner.start('prettier: 初始化开始 ');
 
-    // 安装依赖
+    // 安装依赖 lock
     this.options.npm.installDev('prettier@2.8.4');
 
     // .prettierrc.js
