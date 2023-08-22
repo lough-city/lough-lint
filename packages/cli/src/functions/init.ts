@@ -237,6 +237,7 @@ export class InitFlow {
   }
 
   pipeline(params: { normList: Array<NORM_TYPE>; projectType: PROJECT_TYPE }) {
+    if (params.normList.includes(NORM_TYPE.commitlint)) this.commitlint();
     if (params.normList.includes(NORM_TYPE.tsconfig)) this.tsconfig(params.projectType!);
     if (params.normList.includes(NORM_TYPE.eslint)) this.eslint(params.projectType!);
     if (params.normList.includes(NORM_TYPE.stylelint)) this.stylelint();
@@ -250,7 +251,6 @@ export class InitFlow {
 
       this.options.npm.writeConfig(config);
     }
-    if (params.normList.includes(NORM_TYPE.commitlint)) this.commitlint();
     if (params.normList.includes(NORM_TYPE.prettier)) this.prettier();
     if (params.normList.includes(NORM_TYPE.editor)) this.editor();
   }
