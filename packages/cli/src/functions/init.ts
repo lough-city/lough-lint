@@ -94,7 +94,7 @@ export class InitFlow {
     this.spinner.start('tsconfig: 初始化开始 ');
 
     // 安装依赖
-    this.options.npm.installDev(['typescript@latest', `${packageName}@latest`]);
+    this.options.npm.installDev(['typescript@5.1.6', `${packageName}@latest`]);
 
     // tsconfig.json
     if (existsSync(`${process.cwd()}/tsconfig.json`)) {
