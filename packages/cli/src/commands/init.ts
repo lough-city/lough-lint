@@ -1,18 +1,17 @@
-import { Package } from '@lough/npm-operate';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { PROJECT_TYPE, InitFlow, NORM_TYPE } from '../functions/init';
+import { TECH_TYPE, InitFlow, NORM_TYPE } from '../functions/init';
 import { existsGitConfigSync } from '../utils/git';
-import { failSpinner, succeedSpinner } from '../utils/spinner';
+import { failSpinner, startLoadingSpinner, succeedLoadingSpinner, succeedSpinner } from '../utils/spinner';
 
-const getProjectType = () =>
+const getTechType = () =>
   inquirer
-    .prompt<{ type: PROJECT_TYPE }>([
+    .prompt<{ type: TECH_TYPE }>([
       {
         type: 'list',
         name: 'type',
-        message: `Please select the project type:`,
-        choices: Object.keys(PROJECT_TYPE)
+        message: `Please select the tech type:`,
+        choices: Object.keys(TECH_TYPE)
       }
     ])
     .then(res => res.type);
@@ -31,31 +30,83 @@ const getNormList = () =>
   ]);
 
 interface IOptions {
-  type?: PROJECT_TYPE;
+  /**
+   * 技术类型
+   */
+  techType?: TECH_TYPE;
+  /**
+   * 规范类型
+   * @description 需要初始化的规范列表
+   */
   norms?: Array<NORM_TYPE>;
-  notInteraction: boolean;
+  /**
+   * 静默
+   * @description 是否开启静默模式
+   * @default false
+   */
+  quite?: boolean;
 }
 
 const action = async (options: IOptions) => {
-  const { notInteraction, norms, type } = options;
+  const { norms, techType } = options;
 
-  const npm = new Package();
-
-  const normList = norms || (notInteraction ? Object.values(NORM_TYPE) : (await getNormList()).targets);
+  const normList = norms || (options.quite ? Object.values(NORM_TYPE) : (await getNormList()).targets);
 
   if (normList.includes(NORM_TYPE.commitlint) && !existsGitConfigSync()) {
     failSpinner('init GIT or init in a GIT project!');
     return;
   }
 
-  let projectType = PROJECT_TYPE.typescript;
+  let _techType = TECH_TYPE.typescript;
   if (normList.includes(NORM_TYPE.eslint) || normList.includes(NORM_TYPE.tsconfig)) {
-    projectType = type || (notInteraction ? PROJECT_TYPE.typescript : await getProjectType());
+    _techType = techType || (options.quite ? TECH_TYPE.typescript : await getTechType());
   }
 
-  const initFlow = new InitFlow({ npm });
+  const initFlow = new InitFlow({
+    techType: _techType,
+    cycle: options.quite
+      ? undefined
+      : {
+          eslintStart() {
+            startLoadingSpinner('eslint: 初始化开始');
+          },
+          eslintEnd() {
+            succeedLoadingSpinner(chalk.green('eslint: 初始化成功!'));
+          },
+          tsconfigStart() {
+            startLoadingSpinner('tsconfig: 初始化开始');
+          },
+          tsconfigEnd() {
+            succeedLoadingSpinner(chalk.green('tsconfig: 初始化成功!'));
+          },
+          stylelintStart() {
+            startLoadingSpinner('stylelint: 初始化开始');
+          },
+          stylelintEnd() {
+            startLoadingSpinner(chalk.green('stylelint: 初始化成功!'));
+          },
+          commitlintStart() {
+            startLoadingSpinner('commitlint: 初始化开始');
+          },
+          commitlintEnd() {
+            startLoadingSpinner(chalk.green('commitlint: 初始化成功!'));
+          },
+          editorStart() {
+            startLoadingSpinner('editor: 初始化开始');
+          },
+          editorEnd() {
+            startLoadingSpinner(chalk.green('editor: 初始化成功!'));
+          },
+          prettierStart() {
+            startLoadingSpinner('prettier: 初始化开始');
+          },
+          prettierEnd() {
+            startLoadingSpinner(chalk.green('prettier: 初始化成功!'));
+          }
+        }
+  });
 
-  initFlow.pipeline({ normList, projectType });
+  initFlow.pipeline({ normList });
 
   succeedSpinner(`${chalk.blue('Lough Lint:')} ${chalk.green('succeed')}`);
 };
@@ -63,5 +114,10 @@ const action = async (options: IOptions) => {
 export default {
   command: 'init',
   description: 'init project lint function.',
+  options: [
+    ['-tt, --techType [string]', `init tech type: typescript | react | node`],
+    ['-n, --norms [string...]', `init lint norms: tsconfig | eslint | stylelint | commitlint | prettier | editor`],
+    ['-q, --quite [boolean]', 'execute the program silently.', false]
+  ],
   action
 };

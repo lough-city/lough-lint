@@ -7,7 +7,7 @@
     "email": "lough@nanzc.com",
     "home": "lough.city"
   },
-  "homepage": "https://github.com/lough-city/lough-lint#readme",
+  "homepage": "https://github.com/lough-city/lough-lint/tree/main/packages/cli#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lough-city/lough-lint.git"
@@ -24,15 +24,18 @@
   "main": "es/index.js",
   "types": "es/index.d.ts",
   "bin": {
-    "lough-lint": "es/index.js"
+    "lough-lint": "es/bin.js"
   },
   "scripts": {
     "prepare": "npm run scan",
+    "prepublishOnly": "npm run build",
     "scan": "rimraf ./src/constants/dependencies.ts && node ./scripts/scan.js",
     "build": "npm run scan && rimraf ./es && lough-build && node ./scripts/build.js",
-    "dev": "lough-build dev"
+    "dev": "lough-build dev",
+    "docs": "lough-docs --type cmd api"
   },
   "dependencies": {
+    "@logically/coding-model": "^0.1.5",
     "@lough/npm-operate": "^0.3.0",
     "chalk": "4.1.2",
     "commander": "^10.0.0",
@@ -41,7 +44,8 @@
     "ora": "5.4.1"
   },
   "devDependencies": {
-    "@lough/build-cli": "^0.1.2",
+    "@lough/build-cli": "^0.3.2",
+    "@lough/docs-cli": "^0.1.2",
     "@types/inquirer": "^8.2.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.6.4"
