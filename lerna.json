@@ -3,7 +3,6 @@
   "version": "independent",
   "npmClient": "npm",
   "useNx": false,
-  "useWorkspaces": true,
   "command": {
     "publish": {
       "registry": "https://registry.npmjs.org"
