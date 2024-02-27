@@ -10,6 +10,7 @@ import { NORM_TYPE, TECH_TYPE } from './const';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const __templateDir = '../../templates/';
 
 /**
  * 初始化流生命周期
@@ -123,12 +124,12 @@ export class InitFlow {
     if (existsSync(`${process.cwd()}/.eslintrc.json`)) removeDirOrFileSync(`${process.cwd()}/.eslintrc.json`);
 
     // .eslintrc.js
-    copyFileSync(join(__dirname, '../templates/.eslintrc.js'), `${process.cwd()}/.eslintrc.js`, v =>
+    copyFileSync(join(__dirname, __templateDir, '.eslintrc.js'), `${process.cwd()}/.eslintrc.js`, v =>
       v.replace('{{type}}', this.options.techType)
     );
 
     // .eslintignore
-    copyFileSync(join(__dirname, '../templates/.eslintignore'), `${process.cwd()}/.eslintignore`);
+    copyFileSync(join(__dirname, __templateDir, '.eslintignore'), `${process.cwd()}/.eslintignore`);
 
     const config = this.npm.readConfig();
 
@@ -163,7 +164,7 @@ export class InitFlow {
         )
       );
     } else {
-      copyFileSync(join(__dirname, '../templates/tsconfig.json'), `${process.cwd()}/tsconfig.json`, v =>
+      copyFileSync(join(__dirname, __templateDir, 'tsconfig.json'), `${process.cwd()}/tsconfig.json`, v =>
         v.replace('{{type}}', this.options.techType)
       );
     }
@@ -188,10 +189,10 @@ export class InitFlow {
     this.npm.installDev(`${packageName}@latest`);
 
     // .stylelintrc.js
-    copyFileSync(join(__dirname, '../templates/.stylelintrc.js'), `${process.cwd()}/.stylelintrc.js`);
+    copyFileSync(join(__dirname, __templateDir, '.stylelintrc.js'), `${process.cwd()}/.stylelintrc.js`);
 
     // .stylelintignore
-    copyFileSync(join(__dirname, '../templates/.stylelintignore'), `${process.cwd()}/.stylelintignore`);
+    copyFileSync(join(__dirname, __templateDir, '.stylelintignore'), `${process.cwd()}/.stylelintignore`);
 
     const config = this.npm.readConfig();
 
@@ -224,12 +225,12 @@ export class InitFlow {
     this.npm.installDev(`${packageName}@latest`);
 
     // .commitlintrc.js
-    copyFileSync(join(__dirname, '../templates/.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`);
+    copyFileSync(join(__dirname, __templateDir, '.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`);
     // .gitattributes
-    copyFileSync(join(__dirname, '../templates/.gitattributes'), `${process.cwd()}/.gitattributes`);
+    copyFileSync(join(__dirname, __templateDir, '.gitattributes'), `${process.cwd()}/.gitattributes`);
     // .gitignore
     if (!existsSync(`${process.cwd()}/.gitignore`))
-      copyFileSync(join(__dirname, '../templates/.gitignore.temp'), `${process.cwd()}/.gitignore`);
+      copyFileSync(join(__dirname, __templateDir, '.gitignore.temp'), `${process.cwd()}/.gitignore`);
 
     /* init commitlint config END */
 
@@ -256,10 +257,10 @@ export class InitFlow {
     execa.commandSync(`npx husky install`);
 
     // 添加 pre commit hooks
-    copyFileSync(join(__dirname, '../templates/pre-commit'), `${process.cwd()}/.husky/pre-commit`);
+    copyFileSync(join(__dirname, __templateDir, 'pre-commit'), `${process.cwd()}/.husky/pre-commit`);
 
     // 添加 commit msg hooks
-    copyFileSync(join(__dirname, '../templates/commit-msg'), `${process.cwd()}/.husky/commit-msg`);
+    copyFileSync(join(__dirname, __templateDir, 'commit-msg'), `${process.cwd()}/.husky/commit-msg`);
 
     /* init git commit hooks END */
 
@@ -276,13 +277,13 @@ export class InitFlow {
     if (!existsSync(vscodeConfigPath)) mkdirSync(vscodeConfigPath);
 
     // settings.json
-    copyFileSync(join(__dirname, '../templates/settings.json'), `${vscodeConfigPath}/settings.json`);
+    copyFileSync(join(__dirname, __templateDir, 'settings.json'), `${vscodeConfigPath}/settings.json`);
 
     // extensions.json
-    copyFileSync(join(__dirname, '../templates/extensions.json'), `${vscodeConfigPath}/extensions.json`);
+    copyFileSync(join(__dirname, __templateDir, 'extensions.json'), `${vscodeConfigPath}/extensions.json`);
 
     // .editorconfig
-    copyFileSync(join(__dirname, '../templates/.editorconfig'), `${process.cwd()}/.editorconfig`);
+    copyFileSync(join(__dirname, __templateDir, '.editorconfig'), `${process.cwd()}/.editorconfig`);
 
     this.cycle.emit('editorEnd');
   }
@@ -297,10 +298,10 @@ export class InitFlow {
     this.npm.installDev('prettier@2.8.4');
 
     // .prettierrc.js
-    copyFileSync(join(__dirname, '../templates/.prettierrc.js'), `${process.cwd()}/.prettierrc.js`);
+    copyFileSync(join(__dirname, __templateDir, '.prettierrc.js'), `${process.cwd()}/.prettierrc.js`);
 
     // .prettierignore
-    copyFileSync(join(__dirname, '../templates/.prettierignore'), `${process.cwd()}/.prettierignore`);
+    copyFileSync(join(__dirname, __templateDir, '.prettierignore'), `${process.cwd()}/.prettierignore`);
 
     this.cycle.emit('prettierEnd');
   }
