@@ -29,7 +29,10 @@ const getNormList = () =>
     }
   ]);
 
-interface IOptions {
+/**
+ * 初始化选项
+ */
+export interface InitOptions {
   /**
    * 技术类型
    */
@@ -47,7 +50,7 @@ interface IOptions {
   quite?: boolean;
 }
 
-const action = async (options: IOptions) => {
+const action = async (options: InitOptions) => {
   const { norms, techType } = options;
 
   const normList = norms || (options.quite ? Object.values(NORM_TYPE) : (await getNormList()).targets);
