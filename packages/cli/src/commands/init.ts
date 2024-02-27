@@ -115,7 +115,7 @@ const action = async (options: InitOptions) => {
 };
 
 export default {
-  command: 'init',
+  name: 'init',
   description: 'init project lint function.',
   options: [
     ['-tt, --techType [string]', `init tech type: typescript | react | node`],

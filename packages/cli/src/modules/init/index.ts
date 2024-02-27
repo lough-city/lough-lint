@@ -218,6 +218,12 @@ export class InitFlow {
 
     /* init commitlint config START */
 
+    // .gitattributes
+    copyFileSync(join(__dirname, __templateDir, '.gitattributes'), `${process.cwd()}/.gitattributes`);
+    // .gitignore
+    if (!existsSync(`${process.cwd()}/.gitignore`))
+      copyFileSync(join(__dirname, __templateDir, '.gitignore.temp'), `${process.cwd()}/.gitignore`);
+
     // 检测并移除当前项目相关依赖
     this.npm.uninstall([packageName, ...packageDeps]);
 
@@ -226,11 +232,6 @@ export class InitFlow {
 
     // .commitlintrc.js
     copyFileSync(join(__dirname, __templateDir, '.commitlintrc.js'), `${process.cwd()}/.commitlintrc.js`);
-    // .gitattributes
-    copyFileSync(join(__dirname, __templateDir, '.gitattributes'), `${process.cwd()}/.gitattributes`);
-    // .gitignore
-    if (!existsSync(`${process.cwd()}/.gitignore`))
-      copyFileSync(join(__dirname, __templateDir, '.gitignore.temp'), `${process.cwd()}/.gitignore`);
 
     /* init commitlint config END */
 
